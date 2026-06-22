@@ -1,33 +1,41 @@
 """
 Exhibit 2 — Founders are not interchangeable managers.
-What happens to innovation when a founder-CEO is (exogenously) replaced.
+Event study: firm innovation around a founder-CEO -> professional-CEO switch.
 
 Argument served
 ---------------
 The thesis treats the founder as the irreplaceable unit of the offset. The
-natural skeptic's reply is that a good professional manager can run the company
-just as well once it is built. Lee, Kim & Bae (2020) is the cleanest available
-test of that claim: they use the SUDDEN DEATH of a CEO as a natural experiment,
-so the switch from a founder to a professional manager is plausibly unrelated to
-how the firm was already doing. Innovation output falls sharply -- and not
-because the new managers spend less on R&D, but because they manage and retain
-innovative talent less well.
+skeptic's reply is that a competent professional manager can run the company
+just as well once it is built. Lee, Kim & Bae's event study is the cleanest
+visual answer: tracking firms that switch from a founder-CEO to a professional
+CEO, innovation output is flat and high through the founder years, then drops
+sharply at the switch and keeps falling. The flat pre-trend is the point -- the
+decline starts AT the handover, not before it, which is hard to explain as the
+firm simply being on the way down already.
 
-Why this is a "present the published estimate" exhibit, not a reproduction
--------------------------------------------------------------------------
-The identifying dataset (hand-collected CEO sudden-death events, 1979-2002,
-matched to patent records) is not redistributable, so reproducing the event
-study from scratch is neither feasible nor honest. This exhibit faithfully
-visualizes the paper's *published* headline estimate and its mechanism findings.
-All numbers are the authors'; see data/raw/lee_kim_bae_2020_estimates.csv.
+What this figure is (and an honest sourcing note)
+-------------------------------------------------
+This is a faithful redraw of *Figure 2, "Switching from Founder CEO to
+Professional CEO,"* from the working-paper version of the study ("Are Founder
+CEOs Better Innovators? Evidence from S&P 500 Firms"; S&P 500, 1993-2003). The
+y-axis is the coefficient-plus-constant from a firm fixed-effects panel OLS of
+ln(1 + citation-weighted patent count) on year-relative-to-switch dummies (so it
+is on a log scale); year 0 is the switch. Values were digitized from the
+published chart -- see data/raw/lee_kim_bae_fig2_event_study.csv -- so this
+PRESENTS the authors' figure rather than reproducing the estimation (their data
+are not redistributable).
+
+The peer-reviewed version (Lee, Kim & Bae, 2020, Research Policy 49(1), "...
+Evidence from CEO sudden deaths in public firms") sharpens identification using
+CEO sudden deaths and reports the headline ~43.8% drop in citation-weighted
+patents; that figure is annotated on the chart as corroboration.
 
 Source
 ------
-Lee, J.M., Kim, J., & Bae, J. (2020). "Founder CEOs and innovation: Evidence
-from CEO sudden deaths in public firms." Research Policy, 49(1), 103862.
-DOI: 10.1016/j.respol.2019.103862. Abstract accessed via publisher / RePEc
-(https://ideas.repec.org/a/eee/respol/v49y2020i1s0048733319301817.html),
-2026-06-22.
+Lee, J.M., Kim, J., & Bae, J. "Are Founder CEOs Better Innovators? Evidence from
+S&P 500 Firms" (Wharton Mack Institute working paper), Figure 2. Published
+version: Research Policy 49(1), 103862 (2020), DOI 10.1016/j.respol.2019.103862.
+Accessed 2026-06-22.
 
 Run:  python code/exhibit2_founder_ceo_innovation.py
 """
@@ -36,98 +44,76 @@ from pathlib import Path
 
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch
 
 ROOT = Path(__file__).resolve().parents[1]
-RAW = ROOT / "data" / "raw" / "lee_kim_bae_2020_estimates.csv"
+RAW = ROOT / "data" / "raw" / "lee_kim_bae_fig2_event_study.csv"
 FIG = ROOT / "exhibits" / "exhibit2_founder_ceo_innovation.png"
 
-FOUNDER = "#1f4e79"
-PRO = "#9aa3ad"
-DROP = "#c0392b"
+FOUNDER = "#1f4e79"   # founder era / central line
+PRO = "#c0392b"       # professional era accent
+BAND = "#9fb3c8"      # confidence band
 
 
 def main() -> None:
-    est = pd.read_csv(RAW, comment="#")
-    pct = float(est.loc[est.metric == "citation_weighted_patent_change", "value"].iloc[0])
+    df = pd.read_csv(RAW, comment="#").sort_values("year_rel").reset_index(drop=True)
 
-    founder_idx = 100.0
-    pro_idx = founder_idx * (1 + pct / 100.0)  # 43.8% lower -> 56.2
+    pre = df[df.year_rel < 0].coef_plus_constant.mean()
+    post_last = df[df.year_rel == df.year_rel.max()].coef_plus_constant.iloc[0]
+    at_event = df[df.year_rel == 0].coef_plus_constant.iloc[0]
 
-    print("Exhibit 2 — Lee, Kim & Bae (2020), Research Policy 49(1)")
+    print("Exhibit 2 — Event study: founder -> professional CEO switch")
     print("-" * 60)
-    print(f"  Headline estimate: exogenous founder -> professional CEO transition")
-    print(f"    => {pct:.1f}% change in citation-weighted patent count (controls for R&D).")
-    print(f"  Indexed to founder-led = {founder_idx:.0f}: professional-led = {pro_idx:.1f}.")
-    print( "  Mechanisms (directional, from the paper):")
-    print( "    + founder-led firms produce more patents at BOTH quality tails & more explorative patents")
-    print( "    + inventor employees leave after a founder is replaced (worse talent retention)")
-    print( "    - no evidence founder-led firms simply spend MORE on R&D (it's management, not money)")
+    print(f"  Founder years (-5..-1) average level (log cit-wtd patents): {pre:.2f}")
+    print(f"  At the switch (year 0): {at_event:.2f}")
+    print(f"  Five years after (year +5): {post_last:.2f}")
+    print(f"  Raw endpoint gap, founder-era avg -> year +5: {(post_last - pre):.2f} log points "
+          f"(descriptive only, not the causal estimate).")
+    print("  Cleanly-identified effect (published sudden-death design): "
+          "~43.8% drop in citation-weighted patents.")
 
-    # ---- figure: two-panel. Left: indexed bar comparison. Right: mechanisms. ----
-    fig, (axL, axR) = plt.subplots(1, 2, figsize=(11, 5.6),
-                                   gridspec_kw={"width_ratios": [1.15, 1]})
+    # ---- figure ----
+    fig, ax = plt.subplots(figsize=(9.4, 5.7))
 
-    # Left panel: bars
-    bars = axL.bar([0, 1], [founder_idx, pro_idx],
-                   color=[FOUNDER, PRO], width=0.62, zorder=3)
-    axL.set_xticks([0, 1])
-    axL.set_xticklabels(["Founder-CEO\nled", "Professional-CEO\nled\n(after sudden death)"],
-                        fontsize=10.5)
-    axL.set_ylim(0, 118)
-    axL.set_ylabel("Citation-weighted patent output\n(founder-led firm = 100)", fontsize=10.5)
-    axL.set_yticks([0, 25, 50, 75, 100])
-    axL.grid(axis="y", color="#e3e3e3", lw=0.8, zorder=0)
-    axL.spines[["top", "right"]].set_visible(False)
+    # shaded eras
+    ax.axvspan(-5.5, 0, color=FOUNDER, alpha=0.05)
+    ax.axvspan(0, 5.5, color=PRO, alpha=0.05)
+    ax.axvline(0, color="#555555", lw=1.2, ls="--")
 
-    axL.text(0, founder_idx + 3, "100", ha="center", fontweight="bold",
-             color=FOUNDER, fontsize=12)
-    axL.text(1, pro_idx + 3, f"{pro_idx:.1f}", ha="center", fontweight="bold",
-             color="#5a6066", fontsize=12)
+    # confidence band
+    ax.fill_between(df.year_rel, df.ci_low, df.ci_high, color=BAND, alpha=0.45,
+                    lw=0, label="95% confidence interval")
+    # central path
+    ax.plot(df.year_rel, df.coef_plus_constant, "-D", color=FOUNDER, lw=2.6, ms=6,
+            label="Citation-weighted patent output (coef. + constant)")
 
-    # drop annotation
-    axL.annotate("", xy=(1, pro_idx), xytext=(1, founder_idx),
-                 arrowprops=dict(arrowstyle="-|>", color=DROP, lw=2.2))
-    axL.text(1.34, (founder_idx + pro_idx) / 2, f"{pct:.1f}%",
-             color=DROP, fontweight="bold", fontsize=15, va="center", ha="left")
-    axL.text(1.34, (founder_idx + pro_idx) / 2 - 8, "fewer\ncitation-weighted\npatents",
-             color=DROP, fontsize=8.5, va="top", ha="left")
-    axL.set_xlim(-0.6, 2.1)
+    # era labels
+    ax.text(-2.5, 2.92, "Founder-CEO years", color=FOUNDER, fontsize=11,
+            fontweight="bold", ha="center")
+    ax.text(2.75, 2.92, "After switch to professional CEO", color=PRO, fontsize=11,
+            fontweight="bold", ha="center")
 
-    axL.set_title("Replacing a founder cuts innovation",
-                  fontsize=11.5, fontweight="bold", loc="left", pad=10)
+    ax.set_title("When a founder-CEO is replaced, firm innovation drops — and keeps dropping",
+                 fontsize=12.5, fontweight="bold", loc="left", pad=26)
+    ax.text(0.0, 1.035,
+            "Citation-weighted patent output (log scale) of firms in the years around a founder → professional-CEO switch",
+            transform=ax.transAxes, fontsize=9.5, color="#444444")
 
-    # Right panel: mechanism findings as a clean text block
-    axR.axis("off")
-    axR.set_title("Why — the mechanisms", fontsize=11.5,
-                  fontweight="bold", loc="left", pad=10)
-    items = [
-        ("Identification",
-         "Natural experiment: CEO sudden deaths at U.S. public\nfirms, 1979-2002. The switch is unrelated to firm prospects."),
-        ("It's management, not money",
-         "Effect holds controlling for R&D spend. Founder-led firms\ndo NOT out-spend on R&D — they manage innovation better."),
-        ("Talent walks",
-         "After a founder is replaced, inventor-employees leave —\nfounders retain innovative minds better."),
-        ("Bolder bets",
-         "Founder-led firms produce more explorative patents and\nmore at both quality tails (the home-runs and the misses)."),
-    ]
-    y = 0.86
-    for head, body in items:
-        axR.text(0.02, y, "●", color=FOUNDER, fontsize=11, va="top")
-        axR.text(0.08, y, head, fontweight="bold", fontsize=10.5, va="top")
-        axR.text(0.08, y - 0.055, body, fontsize=9.2, va="top", color="#333333")
-        y -= 0.235
+    ax.set_xlabel("Year relative to CEO change")
+    ax.set_ylabel("Citation-weighted patent output")
+    ax.set_xticks(range(-5, 6))
+    ax.set_xlim(-5.5, 6.4)
+    ax.set_ylim(0, 3.1)
+    ax.grid(axis="y", color="#e6e6e6", lw=0.8)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.legend(loc="lower left", frameon=False, fontsize=9.2)
 
-    fig.suptitle("Founders are not interchangeable managers",
-                 fontsize=14.5, fontweight="bold", x=0.012, ha="left", y=1.01)
+    fig.text(0.012, -0.03,
+             "Source: Lee, Kim & Bae, \"Are Founder CEOs Better Innovators? Evidence from S&P 500 Firms\" (Wharton working paper), "
+             "Figure 2; values digitized from the chart.\nThe peer-reviewed version (Research Policy 49(1), 2020, DOI "
+             "10.1016/j.respol.2019.103862) identifies off CEO sudden deaths and reports a ~43.8% drop. Accessed 2026-06-22.",
+             fontsize=7.5, color="#666666", va="top")
 
-    fig.text(0.012, -0.02,
-             "Source: Lee, Kim & Bae (2020), \"Founder CEOs and innovation: Evidence from CEO sudden deaths in public firms,\" "
-             "Research Policy 49(1), 103862,\nDOI 10.1016/j.respol.2019.103862. Figure presents the paper's published estimates "
-             "(not an independent reproduction). Accessed 2026-06-22.",
-             fontsize=7.6, color="#666666", va="top")
-
-    fig.tight_layout(rect=[0, 0.02, 1, 0.97])
+    fig.tight_layout(rect=[0, 0.02, 1, 1])
     fig.savefig(FIG, dpi=200, bbox_inches="tight")
     print(f"\n  Figure written to {FIG.relative_to(ROOT)}")
 

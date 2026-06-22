@@ -1,0 +1,34 @@
+# Event-study series digitized from Figure 2, "Switching from Founder CEO to
+# Professional CEO," in the working-paper version of the Lee/Kim/Bae study:
+#   Lee, Joon Mahn; Kim, Jongsoo; Bae, Joonhyung. "Are Founder CEOs Better
+#   Innovators? Evidence from S&P 500 Firms." (Wharton Mack Institute working
+#   paper; sample: S&P 500 firms, 1993-2003.)
+#   https://mackinstitute.wharton.upenn.edu/wp-content/uploads/2016/03/Mahn-Lee-Joon-Kim-Jongsoo-and-Bae-Joonhyung_Are-Founder-CEOs-Better-Innovators.-Evidence-from-SP-500-Firms.pdf
+#
+# What the figure plots (per the paper, p.26-27): the coefficient-plus-constant
+# from a FIRM FIXED-EFFECTS panel OLS of ln(1 + citation-weighted patent count)
+# on a set of dummies for the year relative to a founder->professional CEO
+# switch, for the subsample of firms that experienced such a switch. The y-axis
+# is therefore on a log scale (fitted ln(1+citations)); "year 0" is the switch.
+#
+# Values are READ OFF the published chart (graph digitization), so each carries
+# roughly +/-0.03 reading error. They are the paper's own figure, not a
+# reconstruction of the analysis. CI = 95 percent confidence interval.
+#
+# Relationship to the PUBLISHED paper: the peer-reviewed version (Research Policy
+# 49(1), 2020, "...Evidence from CEO sudden deaths in public firms") sharpens the
+# identification using CEO sudden deaths (1979-2002) and reports the headline
+# 43.8% drop in citation-weighted patents. This event study is the working
+# paper's dynamic/robustness view of the same phenomenon. Accessed 2026-06-22.
+year_rel,coef_plus_constant,ci_low,ci_high
+-5,2.08,1.47,2.70
+-4,2.19,1.58,2.81
+-3,2.16,1.63,2.62
+-2,2.04,1.57,2.48
+-1,2.07,1.66,2.48
+0,1.67,1.48,1.87
+1,1.45,0.94,1.96
+2,1.34,0.79,1.90
+3,1.45,0.78,2.11
+4,1.01,0.27,1.50
+5,0.82,0.10,1.52

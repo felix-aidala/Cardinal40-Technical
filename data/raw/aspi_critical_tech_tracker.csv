@@ -1,0 +1,29 @@
+# ASPI (Australian Strategic Policy Institute), "ASPI's two-decade Critical
+# Technology Tracker: The rewards of long-term research investment," released
+# 28-30 August 2024. Covers 64 critical technologies, 2003-2023, on a single
+# consistent 64-technology framework (so the counts below are comparable across
+# windows -- do NOT mix in the 2023 report, which tracked only 44 technologies).
+#
+# "techs_led" = number of the 64 critical technologies in which the country leads
+# the world, where leadership = the highest national share of the world's
+# high-impact research (top 10% most-cited publications) in that technology, over
+# a rolling 5-year window. This is a LEADING indicator of research strength, not
+# manufacturing or deployed capability.
+#
+# DATA AVAILABILITY (important for the time series): the published report states
+# China's count at four windows but the US's at only the two endpoints. The
+# intermediate US counts are not given in the report text (they live in ASPI's
+# interactive Tech Tracker website), so they are left blank here and the US line
+# in the chart is drawn dashed between its two known endpoints, not interpolated
+# as data. mid_year = midpoint of the 5-year window, used for plotting position.
+#
+# Source: https://www.aspi.org.au/report/aspis-two-decade-critical-technology-tracker/
+#   numbers corroborated by ASPI's Strategist write-up (30 Aug 2024).
+#   Accessed 2026-06-22. Page references are to the report PDF.
+window,mid_year,country,techs_led,source_note
+2003-2007,2005,United States,60,"report exec summary / p8 (US led 60 of 64)"
+2003-2007,2005,China,3,"report p8 (China led 3 of 64)"
+2013-2017,2015,China,28,"report p8 (China ahead of US in 28 of 64 in 2013-2017)"
+2018-2022,2020,China,52,"report p8 (52 'last year' = 2018-2022 window)"
+2019-2023,2021,United States,7,"report exec summary / p8 (US leads 7 of 64)"
+2019-2023,2021,China,57,"report p8 (China leads 57 of 64)"

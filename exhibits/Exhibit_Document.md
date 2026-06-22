@@ -60,63 +60,75 @@ and
 
 ![Exhibit 2](exhibit2_founder_ceo_innovation.png)
 
-**Annotation.** Using CEO *sudden deaths* at U.S. public firms (1979–2002) as a
-natural experiment — so the change of leadership is unrelated to how the firm was
-already doing — Lee, Kim & Bae (2020) find that an exogenous switch from a
-founder-CEO to a professional CEO is associated with a **43.8% drop in
-citation-weighted patent output**, even after controlling for R&D spending. The
-headline for the writer: this is the cleanest available answer to the skeptic who
-says "a good manager can run the company once it's built" — the data say no, the
-founder is doing something that does not transfer. The mechanism matters and is
-quotable: the effect is *not* that founders spend more on R&D (they don't); it's
-that they manage and **retain** innovative people — inventors leave after a
-founder is replaced. **Nuance not to overclaim:** this is one well-identified
-study of *public* firms over a historical window, about *patent-based* innovation
-specifically; it is strong evidence that founders matter, not proof that every
-founder should stay forever. We **present the paper's published estimates** — we
-did not re-run the study (its sudden-death dataset is hand-collected and not
-redistributable).
+**Annotation.** This is the authors' own event study of firms that switched from
+a founder-CEO to a professional CEO. Citation-weighted patent output (log scale)
+runs flat and high through the founder years (~2.1), then drops sharply *at the
+switch* (year 0) and keeps falling for five years. The headline for the writer:
+the decline begins exactly at the handover, not before it — the flat pre-trend is
+what makes "the firm was just on the way down anyway" hard to argue, and is the
+cleanest available answer to the skeptic who says a professional manager can run
+the company just as well once it's built. **Nuance not to overclaim:** the
+shaded 95% confidence band widens after the switch, so the *later* post-switch
+points are imprecisely estimated; read the result as the clear break at year 0
+plus the published magnitude, not as a precise year-by-year path. **The
+rigorously-identified magnitude** comes from the peer-reviewed version, which
+isolates causation using CEO *sudden deaths* and reports a **~43.8% drop in
+citation-weighted patents** (controlling for R&D — founders manage and *retain*
+inventors better, they don't simply spend more). We **present the authors'
+figures**; we did not re-run the analysis (their data are not redistributable).
 
-**Source.** Lee, Joon Mahn; Kim, Jongsoo; Bae, Joonhyung (2020). "Founder CEOs
-and innovation: Evidence from CEO sudden deaths in public firms." *Research
-Policy* 49(1), 103862. DOI: 10.1016/j.respol.2019.103862.
-Record: https://ideas.repec.org/a/eee/respol/v49y2020i1s0048733319301817.html
-Accessed 2026-06-22. *Method:* event-study/natural-experiment using exogenous
-CEO sudden deaths; outcome is citation-weighted patent count, controlling for R&D.
-Reported estimates transcribed to
-[`data/raw/lee_kim_bae_2020_estimates.csv`](../data/raw/lee_kim_bae_2020_estimates.csv).
+**Sources.** *Event-study figure:* Lee, Joon Mahn; Kim, Jongsoo; Bae, Joonhyung,
+"Are Founder CEOs Better Innovators? Evidence from S&P 500 Firms" (Wharton Mack
+Institute working paper; S&P 500, 1993–2003), **Figure 2**, "Switching from
+Founder CEO to Professional CEO." Values digitized from the published chart
+(±~0.03 reading error) into
+[`data/raw/lee_kim_bae_fig2_event_study.csv`](../data/raw/lee_kim_bae_fig2_event_study.csv).
+URL: https://mackinstitute.wharton.upenn.edu/wp-content/uploads/2016/03/Mahn-Lee-Joon-Kim-Jongsoo-and-Bae-Joonhyung_Are-Founder-CEOs-Better-Innovators.-Evidence-from-SP-500-Firms.pdf
+*Headline magnitude (corroboration):* Lee, J.M., Kim, J., & Bae, J. (2020),
+"Founder CEOs and innovation: Evidence from CEO sudden deaths in public firms,"
+*Research Policy* 49(1), 103862, DOI 10.1016/j.respol.2019.103862; key estimates
+in [`data/raw/lee_kim_bae_2020_estimates.csv`](../data/raw/lee_kim_bae_2020_estimates.csv).
+*Method:* the figure plots the coefficient-plus-constant from a firm
+fixed-effects panel OLS of ln(1 + citation-weighted patent count) on
+year-relative-to-switch dummies. All accessed 2026-06-22.
 
 ---
 
-## Exhibit 3 — America's exit machine: far deeper capital markets than China's
+## Exhibit 3 — The flip: China's rise to the critical-technology research frontier
 
-![Exhibit 3](exhibit3_exit_market_depth.png)
+![Exhibit 3](exhibit3_critical_tech_leadership.png)
 
-**Annotation.** Deep, liquid public-equity markets are the backbone of the exit
-ecosystem founders depend on — the place companies IPO and the currency that
-funds acquisitions — and on this measure the U.S. dwarfs China: U.S. stock-market
-capitalization is ~216% of GDP vs. China's ~63% (3.4× deeper relative to the
-economy) and ~$62 trillion vs. ~$12 trillion in absolute size (~5× larger) in
-2024. The headline for the writer: America's structural advantage isn't only that
-it produces founders — it's that it can *finance the swing, reward the win, and
-recycle the capital*, which is exactly the flywheel a thinner exit market starves.
-**The nuance a reader (and a careful critic) might miss:** we deliberately use
-market-cap *depth*, not trading volume — China's share turnover is actually
-*higher* than the U.S. (≈186% vs. 148% of GDP in 2024), but that reflects retail
-speculation, not exit capacity, so it would mislead. Two further caveats: public
-markets are a *proxy* for the whole exit ecosystem (M&A and secondaries also
-matter), and a large share of China's listed value is state-owned with capital
-controls limiting exit and repatriation — so China's *usable* exit depth for a
-private investor is arguably thinner still.
+**Annotation.** This is the evidence behind the essay's opening claim that "as
+late as 2007 the U.S. led in the overwhelming majority of these categories — today
+the numbers have flipped." Across the 64 critical technologies ASPI tracks, the
+U.S. led 60 (and China 3) in 2003–2007; China then drew level in the mid-2010s
+(leading 28 by 2013–2017) and pulled decisively ahead, leading 57 of 64 in
+2019–2023 while the U.S. fell to 7. The headline for the writer: this is the alarm
+bell — and the time series shows the switch was *gradual and consistent*, not a
+sudden jump, which makes it harder to dismiss as a blip. **The nuance that is also
+the bridge to the rest of the argument:** ASPI measures *research leadership* —
+each country's share of the world's most highly-cited publications — an *upstream,
+leading* indicator, **not** manufacturing, commercialization, or deployed
+capability. So the right read is "China is now generating more of the frontier
+*ideas*," not "China has already won"; the gap between leading in research and
+turning research into world-changing companies is the space the founder thesis
+occupies (Exhibits 1–2). **What not to claim:** don't equate "leads in research"
+with "dominates the market"; the small remainder of the 64 technologies is led by
+other countries (e.g., UK, India); and note that the **U.S. line is drawn from the
+two published endpoints only** (ASPI's report gives China's count at four windows
+but the U.S.'s at just 2003–2007 and 2019–2023), so it shows direction, not a
+precise year-by-year path.
 
-**Source.** World Bank, *World Development Indicators* (underlying data: World
-Federation of Exchanges / Refinitiv). Indicators CM.MKT.LCAP.GD.ZS (market
-capitalization, % of GDP), CM.MKT.LCAP.CD (market capitalization, current US$),
-and CM.MKT.TRAD.GD.ZS (stocks traded, % of GDP — context only). Pulled via the
-World Bank API, accessed 2026-06-22; snapshot cached in
-[`data/raw/worldbank_market_depth.csv`](../data/raw/worldbank_market_depth.csv).
-*Coverage:* United States and China, 2003–2024 (absolute market cap available
-through 2025). API docs: https://datahelpdesk.worldbank.org/.
+**Source.** ASPI (Australian Strategic Policy Institute), *ASPI's two-decade
+Critical Technology Tracker: The rewards of long-term research investment*,
+released August 2024.
+URL: https://www.aspi.org.au/report/aspis-two-decade-critical-technology-tracker/
+Accessed 2026-06-22. *Variable construction:* a country "leads" a technology if it
+has the highest national share of the world's high-impact research output — the
+top 10% most highly cited publications — in that technology, measured over a
+five-year window; 64 critical technologies are tracked. *Coverage:* global
+research output, comparing 2003–2007 with 2019–2023. Values in
+[`data/raw/aspi_critical_tech_tracker.csv`](../data/raw/aspi_critical_tech_tracker.csv).
 
 ---
 
@@ -126,7 +138,7 @@ through 2025). API docs: https://datahelpdesk.worldbank.org/.
 pip install -r requirements.txt
 python code/exhibit1_stem_phd_pathways.py
 python code/exhibit2_founder_ceo_innovation.py
-python code/exhibit3_exit_market_depth.py   # add --refresh to re-pull World Bank data
+python code/exhibit3_critical_tech_leadership.py
 ```
 
 Each script prints the key figures it computes and writes its figure to this

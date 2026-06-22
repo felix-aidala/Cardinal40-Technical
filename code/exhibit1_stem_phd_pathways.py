@@ -107,13 +107,13 @@ def main() -> None:
     ax.plot(s.plot_year, s.academe_pct, "-o", color=ACADEME, lw=2.5, ms=5)
     ax.plot(s.plot_year, s.industry_pct, "-o", color=INDUSTRY, lw=2.5, ms=5)
 
-    # direct end-of-line labels (in lieu of a legend); nudged apart since the
-    # 2024 values nearly coincide.
-    lx = int(last.plot_year)
-    ax.text(lx + 1.0, last.industry_pct + 1.6, "Industry / business",
-            color=INDUSTRY, fontsize=11, fontweight="bold", va="bottom", ha="left")
-    ax.text(lx + 1.0, last.academe_pct - 1.6, "Academia",
-            color=ACADEME, fontsize=11, fontweight="bold", va="top", ha="left")
+    # direct labels at the START of each line (in lieu of a legend); the two
+    # series are far apart in 1972, so they sit cleanly to the left of the points.
+    fx = int(first.plot_year)
+    ax.text(fx - 1.5, first.academe_pct, "Academia",
+            color=ACADEME, fontsize=11, fontweight="bold", va="center", ha="right")
+    ax.text(fx - 1.5, first.industry_pct, "Industry",
+            color=INDUSTRY, fontsize=11, fontweight="bold", va="center", ha="right")
 
     ax.set_title("Since the 1970s, industry has caught up with academia for new U.S. PhDs",
                  fontsize=12.5, fontweight="bold", pad=26, loc="left")
@@ -125,7 +125,7 @@ def main() -> None:
     ax.set_ylim(0, 72)
     ax.yaxis.set_major_formatter(PercentFormatter())
     ax.set_xticks([1970, 1980, 1990, 2000, 2010, 2020])
-    ax.set_xlim(1969, lx + 14)  # room for the end-of-line labels
+    ax.set_xlim(1963, int(last.plot_year) + 1)  # room on the left for start labels
     ax.grid(axis="y", color="#dddddd", lw=0.8)
     ax.spines[["top", "right"]].set_visible(False)
 

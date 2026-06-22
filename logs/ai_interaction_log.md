@@ -180,3 +180,77 @@ same tables.
 **Result.** Exhibit 1 now runs early-1970s → 2024 (academia ~67%→40%, industry
 ~12%→40%), built from three documented sources with per-point provenance in
 `data/raw/sed_historical_employment_sector_allfields.csv`.
+
+---
+
+## Session 4 — Exhibit 2 as an event study — 2026-06-22
+
+**Goal.** User asked to display the study's actual *event study*.
+
+**What the AI did**
+- Confirmed the published Research Policy paper's headline is a single regression
+  estimate (−43.8%); the dynamic event-study figure lives in the working-paper
+  version ("Are Founder CEOs Better Innovators? Evidence from S&P 500 Firms").
+  Downloaded that PDF and located **Figure 2**, "Switching from Founder CEO to
+  Professional CEO" — coefficient-plus-constant from a firm fixed-effects panel
+  OLS of ln(1 + citation-weighted patents) on year-relative-to-switch dummies.
+- Rendered the figure page to an image and **digitized** the central line and
+  95% CI for years −5…+5 into `data/raw/lee_kim_bae_fig2_event_study.csv`.
+  Cross-checked the reads by confirming the CI is symmetric about the central
+  line at every point (a sanity check that the digitization is internally
+  consistent). Flagged ±~0.03 reading error.
+- Redrew the event study (flat founder-era pre-trend, break at year 0, continued
+  decline) with the eras shaded and the switch marked.
+
+**Honest sourcing notes recorded on the exhibit**
+- The event-study figure is the **working-paper** version (S&P 500, 1993–2003);
+  the **peer-reviewed** version (sudden deaths, 1979–2002) supplies the cleanly
+  identified ~43.8% magnitude. Both are cited; the chart shows the dynamics, the
+  caption carries the rigorous number.
+- This **presents the authors' figure** (digitized), not a re-estimation — their
+  data are not redistributable. The widening post-switch CI is called out so the
+  later points are not over-read.
+
+---
+
+## Session 5 — Rotating Exhibit 3 to the ASPI "flip" — 2026-06-22
+
+**Goal.** User asked to rotate Exhibit 3 to something easier to explain — a
+U.S.-vs-China technological-innovation comparison.
+
+**What the AI did**
+- Flagged a framing consequence up front: a US-vs-China innovation comparison
+  serves the *stakes* pillar (China is ahead) rather than the *US-advantage*
+  pillar the old exit-market exhibit served — a deliberate, useful rebalance.
+- After the user chose the "who leads critical technologies" angle, used the
+  **ASPI Critical Technology Tracker** — the dataset the client names by name in
+  the intake transcript. Verified the headline figures against ASPI's own
+  Strategist write-up: across 64 technologies, the U.S. led 60 (China 3) in
+  2003–2007, vs. the U.S. 7 (China 57) in 2019–2023. Confirmed release date
+  (Aug 2024) and the metric.
+
+**Verification / honest framing**
+- Pinned down exactly what "leading" means: highest national share of the world's
+  **top 10% most-cited publications** in a technology over a 5-year window. This
+  is **research leadership — a leading indicator — not manufacturing or deployed
+  capability.** That distinction is stated on the chart and in the annotation,
+  and it is the bridge to the founder thesis (leading in research ≠ turning
+  research into dominant companies).
+- Noted that the 64 total is not fully split between US and China (a small
+  remainder is led by other countries), so the exhibit avoids implying a strict
+  two-way partition.
+
+**Removed** the prior exit-market Exhibit 3 (script, figure, World Bank raw and
+processed data) to keep the repo to exactly the three current exhibits.
+
+**Time-series version.** User then asked for a time series instead of two grouped
+periods. Parsed the full report PDF and recovered the counts ASPI actually
+publishes: China at four windows (3 in 2003–07, 28 in 2013–17, 52 in 2018–22, 57
+in 2019–23) but the U.S. at only the two endpoints (60, 7). The report's figures
+are per-technology research-share charts, not a count-led-over-time series, and
+the full window-by-window data sits behind ASPI's (partly gated) interactive
+tool. Rather than fabricate the missing U.S. points, the chart plots China's four
+real points as a solid line and the U.S.'s two endpoints as a **dashed** connector
+explicitly labeled "endpoints only." Used only the 2024 two-decade report (a
+single consistent 64-technology framework) — deliberately not the 2023 report,
+which tracked 44 technologies and would not be comparable.
