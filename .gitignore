@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Keep the original briefing package out of the public repo
+Cardinal40_Economist_Package.docx
+
+# Large/temporary data — keep raw sources tracked unless they are large.
+# Uncomment if raw data should not be redistributed:
+# data/raw/
