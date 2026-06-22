@@ -33,7 +33,7 @@ The final exhibit document is [`exhibits/Exhibit_Document.md`](exhibits/Exhibit_
 
 | # | Title | Argument it serves |
 |---|-------|--------------------|
-| 1 | New U.S. S&E PhDs now go to industry, not academia (1994–2024) | The locus of frontier innovation has shifted from the academy to industry/founders — the "multi-industry moment." |
+| 1 | Industry has caught up with academia as new U.S. PhDs' destination (1970s–2024) | The locus of frontier innovation has shifted from the academy to industry/founders — the "multi-industry moment." |
 | 2 | Founders are not interchangeable managers (Lee, Kim & Bae 2020) | An exogenous founder→professional-CEO switch cuts citation-weighted patent output ~44% — founders measurably matter. |
 | 3 | America's exit machine: capital-market depth, U.S. vs. China | The U.S. can finance the swing, reward the win, and recycle the capital — a far deeper exit ecosystem than China's. |
 

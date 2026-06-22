@@ -1,41 +1,44 @@
 """
-Exhibit 1 — Where do new U.S. science & engineering PhDs go to work?
-The shift of frontier talent from the academy to industry, 1994-2024.
+Exhibit 1 — Where do new U.S. PhDs go to work?
+The half-century shift from the academy to industry, early 1970s-2024.
 
 Argument served
 ---------------
 The "founders as the next offset" thesis rests on the claim that the locus of
 frontier innovation has moved out of the university and into industry and
 company-building. New-doctorate employment commitments are a clean, leading
-indicator of where the most highly trained technical talent is choosing to do
-its work. For science & engineering (S&E) doctorates as a whole, industry has
-gone from trailing academia by ~7 points (1994) to leading it by ~22 points
-(2024) -- the two lines cross in the 2009-2014 window.
+indicator of where the most highly trained talent chooses to work. In the early
+1970s academia took two-thirds of new U.S. PhDs with a job in hand and industry
+barely one in eight; by 2024 the two are even (~40% each) -- and within science &
+engineering specifically, industry has pulled far ahead (see annotation).
 
-Data source
------------
-NCSES, Survey of Earned Doctorates (SED), 2024 cycle. Table 2-6, "Employment
-sector of research doctorate recipients with definite postgraduation
-commitments for non-postdoc employment in the United States, by trend broad
-field of doctorate: Selected years, 1994-2024." (NSF 25-349)
-https://ncses.nsf.gov/pubs/nsf25349/assets/data-tables/tables/nsf25349-tab002-006.pdf
-Accessed 2026-06-22. Raw values transcribed to data/raw/sed_table2-6_employment_sector.csv.
+Data sources (one consistent measure, three report vintages)
+------------------------------------------------------------
+All three measure the same thing: the employment SECTOR of new U.S. research
+doctorate recipients who report a definite U.S. EMPLOYMENT commitment (postdocs
+are a separate "study" commitment and are excluded), with "industry" including
+self-employment and "academe" = academic employment.
+
+  1970-74  : NSF/SRS (2006), "U.S. Doctorates in the 20th Century" (NSF 06-319),
+             Table 6-3.  [five-year average, plotted at 1972]
+  1986,1991: NORC/NSF, "Doctorate Recipients from U.S. Universities: Summary
+             Report 2006," Table 30 (selected years 1986-2006).
+  1994-2024: NCSES, Survey of Earned Doctorates 2024, Table 2-6 (NSF 25-349).
+
+The series agree where they meet (1991 = 52.6/21.4 vs 1994 = 51.2/21.1),
+supporting the splice. See the two raw CSVs in data/raw/ for per-point sourcing.
+For the 1994-2024 stretch we use the single current NCSES trend table (Table
+2-6) rather than mixing vintages, so that segment is internally consistent.
 
 Methodological notes
 --------------------
-* Universe: doctorate recipients who reported a *definite* (signed) non-postdoc
-  employment commitment IN THE UNITED STATES. Postdocs are excluded by
-  construction, which is appropriate here -- we want first destinations into the
-  permanent workforce, not training holding-patterns. It does mean the academic
-  pipeline (postdoc -> faculty) is understated as a *share of all graduates*;
-  the trend in the academe-vs-industry split among those who go straight to work
-  is what this exhibit measures, and that is the relevant quantity.
-* "Industry or business" includes self-employment (i.e., founders).
-* The SED switched to a modified CIP field taxonomy in 2021, so field-level
-  series have a small comparability break vs. pre-2021. The aggregates plotted
-  here ("All S&E") are the most robust to that break; field detail is reported
-  in the printout with the caveat.
-* Selected years only (1994, 1999, ... 2024) are published in the trend table.
+* Universe: doctorate recipients with a *definite* (signed) non-postdoc U.S.
+  employment commitment. Postdocs excluded by construction.
+* "industry" includes self-employment (i.e., founders).
+* Selected years only are published; the early-1970s point is a five-year
+  average. A straight segment across the 1972-1986 gap slightly understates that
+  the academic drop was concentrated in the 1970s (academe was near 50% by the
+  early 1980s and then roughly flat for two decades).
 
 Run:  python code/exhibit1_stem_phd_pathways.py
 """
@@ -47,89 +50,90 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 
 ROOT = Path(__file__).resolve().parents[1]
-RAW = ROOT / "data" / "raw" / "sed_table2-6_employment_sector.csv"
-PROCESSED = ROOT / "data" / "processed" / "exhibit1_se_academe_vs_industry.csv"
+RAW_MODERN = ROOT / "data" / "raw" / "sed_table2-6_employment_sector.csv"
+RAW_HIST = ROOT / "data" / "raw" / "sed_historical_employment_sector_allfields.csv"
+PROCESSED = ROOT / "data" / "processed" / "exhibit1_allfields_academe_vs_industry.csv"
 FIG = ROOT / "exhibits" / "exhibit1_stem_phd_pathways.png"
 
-ACADEME = "#1f4e79"   # deep blue
+ACADEME = "#2e7d32"   # forest green
 INDUSTRY = "#c55a11"  # burnt orange
 
 
-def load() -> pd.DataFrame:
-    df = pd.read_csv(RAW, comment="#")
-    df["year"] = df["year"].astype(int)
-    return df
+def build_series() -> pd.DataFrame:
+    """All-fields academe-vs-industry series, early 1970s -> 2024."""
+    modern = pd.read_csv(RAW_MODERN, comment="#")
+    modern = modern[modern.field == "All fields"][["year", "academe_pct", "industry_pct"]].copy()
+    modern["plot_year"] = modern["year"].astype(int)
+
+    hist = pd.read_csv(RAW_HIST, comment="#")
+    hist = hist[hist.field == "All fields"][["plot_year", "academe_pct", "industry_pct"]].copy()
+
+    out = pd.concat([hist[["plot_year", "academe_pct", "industry_pct"]],
+                     modern[["plot_year", "academe_pct", "industry_pct"]]],
+                    ignore_index=True)
+    out = out.sort_values("plot_year").drop_duplicates("plot_year").reset_index(drop=True)
+    return out
 
 
 def main() -> None:
-    df = load()
+    s = build_series()
+    s.to_csv(PROCESSED, index=False)
 
-    # Headline series: all science & engineering fields combined.
-    se = df[df["field"] == "Total S&E"].sort_values("year").reset_index(drop=True)
-    se.to_csv(PROCESSED, index=False)
+    first, last = s.iloc[0], s.iloc[-1]
+    print("Exhibit 1 — U.S. doctorate first-destination employment commitments (all fields)")
+    print("-" * 74)
+    print(f"  {int(first.plot_year)}: academia {first.academe_pct:.1f}%  vs  industry {first.industry_pct:.1f}%"
+          f"   (academia leads by {first.academe_pct - first.industry_pct:+.1f} pts)")
+    print(f"  {int(last.plot_year)}: academia {last.academe_pct:.1f}%  vs  industry {last.industry_pct:.1f}%"
+          f"   (gap {last.academe_pct - last.industry_pct:+.1f} pts)")
 
-    # ---- key computed figures (printed, and used in the annotation) ----
-    first, last = se.iloc[0], se.iloc[-1]
-    print("Exhibit 1 — U.S. S&E doctorate first-destination employment commitments")
-    print("-" * 70)
-    print(f"  {int(first.year)}: academe {first.academe_pct:.1f}%  vs  industry {first.industry_pct:.1f}%"
-          f"   (academe leads by {first.academe_pct - first.industry_pct:+.1f} pts)")
-    print(f"  {int(last.year)}: academe {last.academe_pct:.1f}%  vs  industry {last.industry_pct:.1f}%"
-          f"   (industry leads by {last.industry_pct - last.academe_pct:+.1f} pts)")
-    print(f"  Swing in the academe-minus-industry gap: "
-          f"{(first.academe_pct - first.industry_pct) - (last.academe_pct - last.industry_pct):+.1f} pts")
+    s["industry_leads"] = s.industry_pct >= s.academe_pct
+    if s["industry_leads"].any():
+        flip = int(s[s["industry_leads"]].plot_year.min())
+        prev = int(s[s.plot_year < flip].plot_year.max())
+        print(f"  Industry pulls even with / overtakes academia between {prev} and {flip} (all fields).")
 
-    # Durable crossover: the last year academe still leads, after which industry
-    # leads in every subsequent published year. (Early years wobble because only
-    # selected years are published, so a first-flip rule would mislead.)
-    se["academe_leads"] = se["academe_pct"] >= se["industry_pct"]
-    last_academe_lead = se[se["academe_leads"]].year.max()
-    after = se[se["year"] > last_academe_lead]
-    if not after.empty and not after["academe_leads"].any():
-        nxt = int(after.year.min())
-        print(f"  Industry takes a durable lead between {int(last_academe_lead)} and {nxt} "
-              f"(industry leads in every published year thereafter).")
-
-    print("\n  Field detail, 2024 (industry share, % of definite U.S. commitments):")
-    for fld in ["Engineering", "Computer and information sciences",
-                "Physical sciences", "Mathematics and statistics",
-                "Biological and biomedical sciences"]:
-        row = df[(df.field == fld) & (df.year == 2024)].iloc[0]
-        print(f"    {fld:<38} {row.industry_pct:5.1f}%  (academe {row.academe_pct:.1f}%)")
-    print("  [Field detail has a CIP-taxonomy break in 2021; treat pre/post-2021 with care.]")
+    # S&E-specific endpoints (not plotted) for the annotation: the shift is sharper.
+    hist = pd.read_csv(RAW_HIST, comment="#")
+    se70 = hist[(hist.field == "Science and engineering")].iloc[0]
+    modern = pd.read_csv(RAW_MODERN, comment="#")
+    se24 = modern[(modern.field == "Total S&E") & (modern.year == 2024)].iloc[0]
+    print("\n  For science & engineering specifically (not plotted; cited in annotation):")
+    print(f"    academia {se70.academe_pct:.1f}% (1970-74) -> {se24.academe_pct:.1f}% (2024);"
+          f"  industry {se70.industry_pct:.1f}% -> {se24.industry_pct:.1f}%.")
 
     # ---- figure ----
-    fig, ax = plt.subplots(figsize=(9, 5.5))
-    ax.plot(se.year, se.academe_pct, "-o", color=ACADEME, lw=2.5, label="Academia")
-    ax.plot(se.year, se.industry_pct, "-o", color=INDUSTRY, lw=2.5,
-            label="Industry / business")
+    fig, ax = plt.subplots(figsize=(9.2, 5.5))
+    ax.plot(s.plot_year, s.academe_pct, "-o", color=ACADEME, lw=2.5, ms=5)
+    ax.plot(s.plot_year, s.industry_pct, "-o", color=INDUSTRY, lw=2.5, ms=5)
 
-    # endpoint value labels
-    for col, color, dy in [("academe_pct", ACADEME, 10), ("industry_pct", INDUSTRY, -16)]:
-        for x, y in [(se.year.iloc[0], se[col].iloc[0]), (se.year.iloc[-1], se[col].iloc[-1])]:
-            ax.annotate(f"{y:.0f}%", (x, y), textcoords="offset points",
-                        xytext=(0, dy), ha="center", color=color, fontsize=10,
-                        fontweight="bold")
+    # direct end-of-line labels (in lieu of a legend); nudged apart since the
+    # 2024 values nearly coincide.
+    lx = int(last.plot_year)
+    ax.text(lx + 1.0, last.industry_pct + 1.6, "Industry / business",
+            color=INDUSTRY, fontsize=11, fontweight="bold", va="bottom", ha="left")
+    ax.text(lx + 1.0, last.academe_pct - 1.6, "Academia",
+            color=ACADEME, fontsize=11, fontweight="bold", va="top", ha="left")
 
-    ax.set_title("New U.S. science & engineering PhDs now go to industry, not academia",
-                 fontsize=12.5, fontweight="bold", pad=30, loc="left")
-    ax.text(0.0, 1.025,
-            "Share of S&E doctorate recipients with a definite U.S. non-postdoc job commitment, by sector",
+    ax.set_title("Since the 1970s, industry has caught up with academia for new U.S. PhDs",
+                 fontsize=12.5, fontweight="bold", pad=26, loc="left")
+    ax.text(0.0, 1.035,
+            "Share of new U.S. research-doctorate recipients with a definite U.S. employment commitment, by sector (all fields)",
             transform=ax.transAxes, fontsize=9.5, color="#444444")
 
     ax.set_ylabel("Share of definite U.S. employment commitments")
-    ax.set_ylim(0, 65)
+    ax.set_ylim(0, 72)
     ax.yaxis.set_major_formatter(PercentFormatter())
-    ax.set_xticks(se.year)
+    ax.set_xticks([1970, 1980, 1990, 2000, 2010, 2020])
+    ax.set_xlim(1969, lx + 14)  # room for the end-of-line labels
     ax.grid(axis="y", color="#dddddd", lw=0.8)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(loc="center left", frameon=False, fontsize=11)
 
     ax.text(0.0, -0.16,
-            "Source: NCSES, Survey of Earned Doctorates 2024, Table 2-6 (NSF 25-349). "
-            "Postdocs excluded; 'industry' includes self-employment.\n"
-            "Selected years shown. Accessed 2026-06-22.",
-            transform=ax.transAxes, fontsize=7.5, color="#666666", va="top")
+            "Sources: 1970-74 from NSF \"U.S. Doctorates in the 20th Century\" (NSF 06-319, Tbl 6-3); 1986 & 1991 from "
+            "NORC/NSF Summary Report 2006 (Tbl 30);\n1994-2024 from NCSES Survey of Earned Doctorates 2024 (Tbl 2-6, "
+            "NSF 25-349). Postdocs excluded; 'industry' includes self-employment. Accessed 2026-06-22.",
+            transform=ax.transAxes, fontsize=7.3, color="#666666", va="top")
 
     fig.tight_layout()
     fig.savefig(FIG, dpi=200, bbox_inches="tight")

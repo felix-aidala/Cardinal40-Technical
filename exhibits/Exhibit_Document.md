@@ -16,36 +16,43 @@ The three exhibits trace one logical chain:
 
 ---
 
-## Exhibit 1 — New U.S. science & engineering PhDs now go to industry, not academia
+## Exhibit 1 — Since the 1970s, industry has caught up with academia for new U.S. PhDs
 
 ![Exhibit 1](exhibit1_stem_phd_pathways.png)
 
-**Annotation.** Among newly minted U.S. science-and-engineering PhDs who take a
-definite job (not a postdoc), the share heading into industry has overtaken the
-share heading into academia — the two lines cross in the 2009–2014 window, and by
-2024 industry leads 52% to 30%, a ~29-point swing in the gap since 1994. The
-headline for the writer: the most highly trained technical talent in America
-increasingly does its frontier work inside companies, not universities — the
-empirical backbone for "the locus of innovation has shifted to industry and
-founders." **Nuance not to overclaim:** this measures *first-destination
-commitments of those who go straight to work*, so it understates the academic
-pipeline that runs through postdocs, and it is a statement about *where talent
-goes*, not a direct measurement of *where the best science happens*. The 2021 CIP
-field-taxonomy change means field-level splits (e.g., engineering) have a small
-pre/post-2021 comparability break; the all-S&E aggregate shown here is robust to
-it.
+**Annotation.** Over half a century, the destination of new U.S. PhDs who take a
+definite job (not a postdoc) has been transformed: academia's share fell from
+about two-thirds (67%) in the early 1970s to ~40% in 2024, while industry's rose
+from ~12% to ~40% — the two are now essentially even. The headline for the
+writer: the academic career has gone from *the* default to one of two co-equal
+paths, as the country's most highly trained talent steadily reallocates toward
+industry and company-building. **The nuance that strengthens the thesis:** this
+chart is *all fields*; within **science & engineering specifically**, the shift
+is far sharper — industry rose from 22% (1970–74) to **52%** (2024) while
+academia fell from 58% to **30%**, so in exactly the technical fields the offset
+depends on, industry has *decisively* overtaken the university. **What not to
+overclaim:** this measures *first destinations* of those going straight to work
+(postdocs excluded), not *where the best science happens*; the 2004 academic
+uptick is a real post-dot-com blip, not noise; and the pre-1994 points come from
+earlier SED report vintages (same measure — the series agree where they meet),
+with the academic decline concentrated in the 1970s.
 
-**Source.** National Center for Science and Engineering Statistics (NCSES),
-*Survey of Earned Doctorates*, 2024 cycle. Table 2-6, "Employment sector of
-research doctorate recipients with definite postgraduation commitments for
-non-postdoc employment in the United States, by trend broad field of doctorate:
-Selected years, 1994–2024." NSF 25-349.
+**Sources.** Three vintages of the same NSF/NCSES measure (sector of new research
+doctorate recipients with a definite U.S. employment commitment; postdocs
+excluded; "industry" includes self-employment):
+(1) **1970–74** — NSF/SRS (2006), *U.S. Doctorates in the 20th Century*, NSF
+06-319, Table 6-3 (five-year average). 
+(2) **1986, 1991** — NORC/NSF, *Doctorate Recipients from U.S. Universities:
+Summary Report 2006*, Table 30 (selected years 1986–2006).
+URL: https://www.norc.org/content/dam/norc-org/pdfs/SED_Sum_Rpt_2006.pdf
+(3) **1994–2024** — NCSES, *Survey of Earned Doctorates 2024*, Table 2-6, NSF
+25-349.
 URL: https://ncses.nsf.gov/pubs/nsf25349/assets/data-tables/tables/nsf25349-tab002-006.pdf
-Accessed 2026-06-22. *Variable construction:* percentages are over doctorate
-recipients reporting a definite non-postdoc U.S. employment commitment; "industry
-or business" includes self-employment. *Coverage:* U.S.-trained research
-doctorates, selected years 1994–2024. Raw values in
-[`data/raw/sed_table2-6_employment_sector.csv`](../data/raw/sed_table2-6_employment_sector.csv).
+All accessed 2026-06-22. The 1994–2024 segment uses the single current NCSES
+trend table (no vintage-mixing within it). Per-point sourcing in
+[`data/raw/sed_table2-6_employment_sector.csv`](../data/raw/sed_table2-6_employment_sector.csv)
+and
+[`data/raw/sed_historical_employment_sector_allfields.csv`](../data/raw/sed_historical_employment_sector_allfields.csv).
 
 ---
 

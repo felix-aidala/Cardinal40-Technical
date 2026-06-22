@@ -133,3 +133,50 @@ exhibit document and in each script header.
 
 **Next steps.** Optional: commit and push to GitHub (Deliverable 2) — repo is
 local; hand off push commands so credentials stay with the user.
+
+---
+
+## Session 3 — Extending Exhibit 1 back to the 1970s — 2026-06-22
+
+**Goal.** User asked whether Exhibit 1 could go farther back than 1994.
+
+**What the AI did**
+- Established first that the *exact* current series (S&E-only, definite
+  non-postdoc commitments) is only *published* back to 1994: NCSES labels Table
+  2-6 a "trend" table starting in 1994, and older published sector tables aren't
+  S&E-specific. Going earlier in S&E would require restricted microdata (RDAS /
+  WebCASPAR).
+- Identified a longer, *different* series (academic share of the employed S&E
+  doctoral workforce, from the Survey of Doctorate Recipients) and flagged that
+  splicing a stock measure onto our flow measure would be the same comparability
+  sin we avoided in Exhibit 3 — so it was offered only as labeled context.
+- After the user chose to extend with comparable data, **downloaded and parsed
+  three historical SED report PDFs** (`pdfplumber`): NSF "U.S. Doctorates in the
+  20th Century" (NSF 06-319) and the NORC/NSF Summary Reports 1998 & 2006.
+  Found the same measure (sector among new doctorates with a definite U.S.
+  *employment* commitment; postdocs are a separate "study" commitment) in:
+  Table 6-3 (1970–74 and 1995–99) and Table 30 (selected years 1986–2006).
+
+**Verification / comparability checks (the important part)**
+- Confirmed all three vintages define "industry" to include self-employment and
+  measure the same employment-commitment base — so they are comparable.
+- **Seam check:** Table 30's 1991 (academe 52.6 / industry 21.4) flows smoothly
+  into Table 2-6's 1994 (51.2 / 21.1); and the 20th-century report's 1995–99
+  averages (49.4 / 26.6) match Table 2-6's 1999 (48.8 / 27.5). Independent
+  vintages agreeing at the seams is strong evidence the splice is valid.
+- **Caught a false-comparability trap:** the 1998 Summary Report's sector table
+  (academe 50.0%) *includes postdocs in academe* (its footnote 20), unlike the
+  modern non-postdoc measure — so that particular table was NOT used. Only the
+  employment-commitment tables (which exclude postdocs, same as Table 2-6) were.
+- To avoid mixing vintages within one stretch, used the single current NCSES
+  table for all of 1994–2024; older vintages only supply pre-1994 points.
+
+**Decision with the user.** Because a strictly-comparable pre-1994 series exists
+only for *all fields* (not S&E-only), the user chose to **switch Exhibit 1's
+headline to the all-fields measure, 1970s–2024**. The sharper S&E-specific shift
+(industry 22%→52%, academia 58%→30%) is cited in the annotation, sourced to the
+same tables.
+
+**Result.** Exhibit 1 now runs early-1970s → 2024 (academia ~67%→40%, industry
+~12%→40%), built from three documented sources with per-point provenance in
+`data/raw/sed_historical_employment_sector_allfields.csv`.

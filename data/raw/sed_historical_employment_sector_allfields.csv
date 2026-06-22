@@ -1,0 +1,32 @@
+# Historical (pre-1994) employment-sector shares for ALL FIELDS of U.S. research
+# doctorate recipients with a definite U.S. EMPLOYMENT commitment (postdocs are
+# a separate "study commitment" and are excluded), by sector. "industry"
+# includes self-employment. Same measure as SED Table 2-6 (1994-2024); these
+# rows extend it backward using earlier NSF/SED report vintages.
+#
+# Comparability: all three sources measure sector among new doctorate recipients
+# with a definite U.S. employment (non-postdoc) commitment, and all define
+# "industry" to include self-employment and "academe" as academic employment.
+# The series agree at the seams (1991 below = 52.6/21.4 vs Table 2-6 1994 =
+# 51.2/21.1), supporting the splice. Each point is tagged with its source.
+#
+# plot_year is the year the point is plotted at; for the 1970-74 five-year
+# average we use the period midpoint (1972).
+#
+# Sources:
+#  [A] NSF/SRS (2006), "U.S. Doctorates in the 20th Century" (NSF 06-319),
+#      Table 6-3, "Employment sectors of Ph.D.s with U.S. postgraduation work
+#      commitments, by major field of doctorate: 1970-74 and 1995-99."
+#      https://wayback.archive-it.org/ (NIH-hosted copy:
+#      https://dpcpsi.nih.gov/sites/default/files/opep/document/Final_Report_(03-517-OD-OER)%202006.pdf)
+#  [B] NORC/NSF, "Doctorate Recipients from United States Universities: Summary
+#      Report 2006," Table 30, "Employment sector of doctorate recipients with
+#      definite postgraduation employment commitments in the U.S., by broad
+#      field of study for selected years, 1986-2006."
+#      https://www.norc.org/content/dam/norc-org/pdfs/SED_Sum_Rpt_2006.pdf
+#  Accessed 2026-06-22.
+field,year,plot_year,academe_pct,industry_pct,source
+All fields,1972,1972,66.7,12.2,A (1970-74 five-year average)
+All fields,1986,1986,49.5,21.5,B (Table 30)
+All fields,1991,1991,52.6,21.4,B (Table 30)
+Science and engineering,1972,1972,57.6,22.1,A (1970-74 avg; annotation only / not plotted)
