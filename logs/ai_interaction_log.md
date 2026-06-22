@@ -66,3 +66,70 @@ detailed scoping.
 
 **Next steps.** Scope each exhibit with the user, then locate and vet primary
 data sources before writing any analysis code.
+
+---
+
+## Session 2 — Source verification & building the three exhibits — 2026-06-22
+
+**Goal.** Clear the two flagged verification hazards, then build all three
+exhibits (code + data + figures + annotations) and the exhibit document.
+
+**Verification done FIRST, before any code (the important part)**
+
+1. *Exhibit 2 citation (flagged high hallucination risk).* The AI proposed
+   "Lee, Kim & Bae (2020)" on a founder *exit* event study. Verified against
+   primary records: the paper is **real** but the earlier description was
+   **wrong in two ways**. Correct citation: Lee, Joon Mahn; Kim, Jongsoo; Bae,
+   Joonhyung (2020), "Founder CEOs and innovation: Evidence from CEO sudden
+   deaths in public firms," *Research Policy* 49(1), 103862,
+   DOI 10.1016/j.respol.2019.103862. (a) Identification is **CEO sudden
+   deaths**, 1979–2002 — not voluntary exits. (b) Outcome is
+   **citation-weighted patent count** (−43.8% on a founder→professional
+   transition), not "productivity" generically. The verbatim abstract was read
+   from the publisher/RePEc record to confirm the 43.8% figure, the "controls
+   for R&D" qualifier, and the mechanism findings. **Consequence:** because the
+   dataset is hand-collected and not redistributable, we do **not** reproduce
+   the event study; we present the paper's published estimates and label them as
+   such. This is exactly the AI-misuse the assignment warns about (confusing
+   studies / inventing methods), caught by checking the primary source.
+
+2. *Exhibit 3 comparability (flagged key methodological hazard).* "Venture
+   failure rates, U.S. vs. China" cannot be built honestly because "failure" is
+   not defined comparably across the two systems. Decided with the user to pivot
+   to **exit-market depth**, which is the defensible, better-sourced version of
+   the same argument (and the one the client emphasized in the intake).
+
+**What the AI did (and how each number was checked)**
+
+- *Exhibit 1.* Located NCSES SED Table 2-6 (the authoritative 1994–2024 trend
+  table). The summary numbers a web tool returned (52%→33% academe, 2002→2022)
+  came from a *different* SED cycle; rather than trust that paraphrase, the
+  actual Table 2-6 PDF was downloaded and parsed with `pdfplumber`, and the
+  transcribed values were written by hand into the raw CSV. All plotted/printed
+  figures derive from that transcription, not from any LLM-stated statistic.
+- *Exhibit 2.* Built a figure from the paper's own reported magnitude (−43.8%,
+  indexed to founder-led = 100 → 56.2) plus its qualitative mechanism findings.
+  No statistic originates with the LLM.
+- *Exhibit 3.* Pulled market-cap series live from the **World Bank API**
+  (CM.MKT.LCAP.GD.ZS, CM.MKT.LCAP.CD, CM.MKT.TRAD.GD.ZS) for USA/CHN and cached
+  a snapshot. While inspecting the data the AI caught that stock *turnover* is
+  actually higher in China (retail churn) — so headlining "trading volume" would
+  have been misleading. Switched the headline metric to market-cap depth and
+  documented the turnover nuance in the annotation. (Example of using the data
+  itself to overrule a plausible-but-wrong framing.)
+
+**Division of labor.** AI was used for: locating candidate sources, parsing
+PDFs/JSON, drafting code and annotations, and catching framing errors. AI was
+**not** used as a source of any statistic — every number in an exhibit traces to
+NCSES, the published paper, or the World Bank, with URLs and access dates in the
+exhibit document and in each script header.
+
+**Open items / honest limitations**
+- Exhibit 2 is a presentation of published results, not an independent
+  reproduction (data not redistributable) — stated plainly in the exhibit.
+- Exhibit 3 uses public-equity depth as a proxy for the whole exit ecosystem;
+  M&A and secondary-market depth would strengthen it but lack a single clean,
+  free, cross-country source. Flagged in the annotation.
+
+**Next steps.** Optional: commit and push to GitHub (Deliverable 2) — repo is
+local; hand off push commands so credentials stay with the user.

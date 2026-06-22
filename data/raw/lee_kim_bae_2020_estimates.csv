@@ -1,0 +1,16 @@
+# Reported estimates from:
+#   Lee, Joon Mahn; Kim, Jongsoo; Bae, Joonhyung (2020). "Founder CEOs and
+#   innovation: Evidence from CEO sudden deaths in public firms."
+#   Research Policy 49(1), 103862. DOI: 10.1016/j.respol.2019.103862
+# These are the PAPER'S OWN published estimates, transcribed verbatim from the
+#   abstract / RePEc record. This exhibit presents the published result; it does
+#   NOT reproduce the analysis (the sudden-death dataset is hand-collected and
+#   not redistributable). Accessed 2026-06-22.
+#
+# Identification: exogenous founder-CEO -> professional-CEO transitions caused by
+#   the SUDDEN DEATH of a CEO at U.S. publicly listed firms, 1979-2002. Sudden
+#   death makes the leadership change plausibly unrelated to firm prospects,
+#   addressing the endogeneity of who runs (and keeps running) a firm.
+metric,value,unit,note
+citation_weighted_patent_change,-43.8,percent,"Effect of exogenous founder->professional CEO change on citation-weighted patent count, controlling for R&D expenditures"
+rd_investment_effect,0,qualitative,"No evidence that founder-led firms allocate MORE capital to R&D than professional-led firms (effect operates through management of innovation, not spend)"

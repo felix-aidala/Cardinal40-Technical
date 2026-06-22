@@ -26,15 +26,25 @@ produce the exhibits in the accompanying exhibit document.
     └── ai_interaction_log.md  # Deliverable 3: log of LLM interactions
 ```
 
-## Planned exhibits
+## Exhibits
 
-| # | Working title | Argument it serves |
-|---|---------------|--------------------|
-| 1 | Share of U.S. STEM PhDs entering academia vs. industry over time | The locus of frontier innovation has shifted from the academy to industry/founders — the "multi-industry moment." |
-| 2 | Event study: effect of a founder's exit on firm productivity (Lee, Kim & Bae 2020) | Founders are not interchangeable managers; their departure measurably hurts the firm — why founders matter. |
-| 3 | Venture/startup failure rates, U.S. vs. China | The U.S.'s high-churn, "ruthless capitalist" model vs. China's state-supported industry — and why selecting the right founders is the fund's value-add. |
+The final exhibit document is [`exhibits/Exhibit_Document.md`](exhibits/Exhibit_Document.md)
+(Deliverable 1: each exhibit + plain-English annotation + source citation).
 
-> Exhibit definitions are preliminary and subject to revision after scoping discussion.
+| # | Title | Argument it serves |
+|---|-------|--------------------|
+| 1 | New U.S. S&E PhDs now go to industry, not academia (1994–2024) | The locus of frontier innovation has shifted from the academy to industry/founders — the "multi-industry moment." |
+| 2 | Founders are not interchangeable managers (Lee, Kim & Bae 2020) | An exogenous founder→professional-CEO switch cuts citation-weighted patent output ~44% — founders measurably matter. |
+| 3 | America's exit machine: capital-market depth, U.S. vs. China | The U.S. can finance the swing, reward the win, and recycle the capital — a far deeper exit ecosystem than China's. |
+
+**Scoping changes from the initial sketch** (see `logs/ai_interaction_log.md`, Session 2):
+- *Exhibit 2* presents Lee, Kim & Bae's **published estimates** rather than a
+  reproduced event study — their sudden-death dataset is hand-collected and not
+  redistributable, so re-running it is neither feasible nor honest.
+- *Exhibit 3* pivoted from raw "venture failure rates" (which are not
+  cross-country comparable in how "failure" is defined) to **exit-market depth**,
+  the more defensible and better-sourced version of the same point — and the one
+  the client herself emphasized.
 
 ## Reproducing the exhibits
 
@@ -43,8 +53,8 @@ Each exhibit is produced by a self-contained script in `code/`. From the repo ro
 ```bash
 pip install -r requirements.txt
 python code/exhibit1_stem_phd_pathways.py
-python code/exhibit2_founder_exit_event_study.py
-python code/exhibit3_venture_failure_rates.py
+python code/exhibit2_founder_ceo_innovation.py
+python code/exhibit3_exit_market_depth.py   # add --refresh to re-pull World Bank data
 ```
 
 Each script reads from `data/`, writes a figure to `exhibits/`, and prints the
