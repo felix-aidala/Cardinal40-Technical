@@ -35,7 +35,7 @@ The final exhibit document is [`exhibits/Exhibit_Document.md`](exhibits/Exhibit_
 |---|-------|--------------------|
 | 1 | Industry has caught up with academia as new U.S. PhDs' destination (1970s–2024) | The locus of frontier innovation has shifted from the academy to industry/founders — the "multi-industry moment." |
 | 2 | Founders are not interchangeable managers — event study (Lee, Kim & Bae) | Firm innovation is flat through the founder years, then drops sharply at a founder→professional-CEO switch (published sudden-death design: ~44%). |
-| 3 | America's exit machine: capital-market depth, U.S. vs. China | The U.S. can finance the swing, reward the win, and recycle the capital — a far deeper exit ecosystem than China's. |
+| 3 | Financing the swing: U.S. venture capital dwarfs the rest of the G7 | America doesn't just produce valuable founders — it funds them at a scale no peer economy approaches, which is why the U.S. (not its allies) is the one equipped to challenge China. |
 
 **Scoping changes from the initial sketch** (see `logs/ai_interaction_log.md`):
 - *Exhibit 1* was extended back to the early 1970s using historical SED report
@@ -46,10 +46,16 @@ The final exhibit document is [`exhibits/Exhibit_Document.md`](exhibits/Exhibit_
   the working-paper version), with the peer-reviewed sudden-death magnitude
   (~44%) cited as the rigorously-identified number. We present the published
   figures; the data are not redistributable.
-- *Exhibit 3* pivoted from raw "venture failure rates" (which are not
-  cross-country comparable in how "failure" is defined) to **exit-market depth**,
-  the more defensible and better-sourced version of the same point — and the one
-  the client herself emphasized.
+- *Exhibit 3* went through two scoping moves. It first pivoted from raw "venture
+  failure rates" (not cross-country comparable in how "failure" is defined) to a
+  U.S.-vs.-China **exit-market depth** chart. That direct U.S.–China comparison
+  was then dropped: it leaned on Chinese market-structure data that is hard to
+  vouch for, and it was the only exhibit carrying a head-to-head comparison
+  (Exhibits 1 and 2 are both U.S. series). The final exhibit instead measures the
+  "finance the swing" leg directly — **U.S. venture capital as a share of GDP vs.
+  the rest of the G7** (OECD) — making the point that even among America's closest
+  peers, the U.S. is uniquely resourced to fund founders, and is therefore the
+  country positioned to challenge China. The China contrast stays in the prose.
 
 ## Reproducing the exhibits
 
@@ -59,7 +65,7 @@ Each exhibit is produced by a self-contained script in `code/`. From the repo ro
 pip install -r requirements.txt
 python code/exhibit1_stem_phd_pathways.py
 python code/exhibit2_founder_ceo_innovation.py
-python code/exhibit3_exit_market_depth.py
+python code/exhibit3_vc_gdp.py
 ```
 
 Each script reads from `data/`, writes a figure to `exhibits/`, and prints the

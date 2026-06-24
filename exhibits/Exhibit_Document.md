@@ -12,7 +12,7 @@ The three exhibits trace one logical chain:
 
 1. **Where frontier talent now works** — innovation has moved from the academy into industry and company-building.
 2. **Why the founder specifically matters** — founders are not interchangeable managers; remove them and innovation measurably falls.
-3. **Why America's system wins** — the U.S. has a vastly deeper exit machine to finance, reward, and recycle those founders than China does.
+3. **Why America's system wins** — the U.S. funds its founders at a scale no peer economy approaches, which is why it (not its allies) is the one equipped to challenge China.
 
 ---
 
@@ -94,35 +94,40 @@ year-relative-to-switch dummies. All accessed 2026-06-22.
 
 ---
 
-## Exhibit 3 — America's exit machine: far deeper capital markets than China's
+## Exhibit 3 — Financing the swing: U.S. venture capital dwarfs the rest of the G7
 
-![Exhibit 3](exhibit3_exit_market_depth.png)
+![Exhibit 3](exhibit3_vc_gdp.png)
 
-**Annotation.** Deep, liquid public-equity markets are the backbone of the exit
-ecosystem founders depend on — the place companies IPO and the currency that
-funds acquisitions — and on this measure the U.S. dwarfs China: U.S. stock-market
-capitalization is ~216% of GDP vs. China's ~63% (3.4× deeper relative to the
-economy) and ~$62 trillion vs. ~$12 trillion in absolute size (~5× larger) in
-2024. The headline for the writer: America's structural advantage isn't only that
-it produces founders — it's that it can *finance the swing, reward the win, and
-recycle the capital*, which is exactly the flywheel a thinner exit market starves.
-**The nuance a reader (and a careful critic) might miss:** we deliberately use
-market-cap *depth*, not trading volume — China's share turnover is actually
-*higher* than the U.S. (≈186% vs. 148% of GDP in 2024), but that reflects retail
-speculation, not exit capacity, so it would mislead. Two further caveats: public
-markets are a *proxy* for the whole exit ecosystem (M&A and secondaries also
-matter), and a large share of China's listed value is state-owned with capital
-controls limiting exit and repatriation — so China's *usable* exit depth for a
-private investor is arguably thinner still.
+**Annotation.** The first two exhibits establish that frontier talent now sits in
+industry and that founders specifically are hard to replace. This one closes the
+loop on the *system*: America doesn't just produce valuable founders — it
+bankrolls them at a scale no peer economy approaches. Venture capital is the fuel
+that lets a founder take an expensive, uncertain swing, and relative to the size
+of its economy the U.S. invests far more of it than any other G7 country —
+roughly 0.5% of GDP in 2024, about 3× the U.K., 6× France, and 8–9× Germany and
+Japan — a gap that widened markedly after 2018. **Why show peers rather than just
+China:** the contest with China is usually framed as a two-country race, but that
+framing hides the more telling fact — the capacity to finance founders at scale
+is what determines who can credibly *challenge* Beijing, and on that measure the
+U.S. stands alone even among its closest allies. Showing the U.S. against its own
+peer group, not just against China, is what demonstrates that America is the one
+country actually equipped to mount the challenge. **Nuance not to overclaim:** the
+U.S. is not the world leader on this ratio — *Israel* invests a larger share of
+its GDP (~1.8%). I scope the comparison to the G7, the large advanced economies
+where the U.S. leads, and flag Israel rather than bury it; note too that the
+ranking reverses on absolute capital, where the U.S. (~$156B) is ~16× Israel
+(~$10B). And this is venture capital specifically — one channel of startup
+finance, not the whole of it.
 
-**Source.** World Bank, *World Development Indicators* (underlying data: World
-Federation of Exchanges / Refinitiv). Indicators CM.MKT.LCAP.GD.ZS (market
-capitalization, % of GDP), CM.MKT.LCAP.CD (market capitalization, current US$),
-and CM.MKT.TRAD.GD.ZS (stocks traded, % of GDP — context only). Pulled via the
-World Bank API, accessed 2026-06-22; snapshot cached in
-[`data/raw/worldbank_market_depth.csv`](../data/raw/worldbank_market_depth.csv).
-*Coverage:* United States and China, 2003–2024 (absolute market cap available
-through 2025). API docs: https://datahelpdesk.worldbank.org/.
+**Source.** OECD, *Entrepreneurship Financing Database*, "Venture capital
+investments (market statistics)," dataflow `DSD_VC@DF_VC_INV`, business
+development stage = Total. Units used: venture capital as a percentage of GDP, and
+absolute US$ (exchange-rate converted) for the scale comparison. Pulled via the
+OECD SDMX API, accessed 2026-06-24; snapshot cached in
+[`data/raw/oecd_vc_gdp.csv`](../data/raw/oecd_vc_gdp.csv).
+*Coverage:* 37 reporting economies, 2002–2025; the figure uses 2024, the latest
+year with full G7 coverage, for the cross-section and 2006–2024 for the trend.
+Data Explorer: https://data-explorer.oecd.org/vis?df%5Bid%5D=DSD_VC@DF_VC_INV.
 
 ---
 
@@ -132,7 +137,7 @@ through 2025). API docs: https://datahelpdesk.worldbank.org/.
 pip install -r requirements.txt
 python code/exhibit1_stem_phd_pathways.py
 python code/exhibit2_founder_ceo_innovation.py
-python code/exhibit3_exit_market_depth.py
+python code/exhibit3_vc_gdp.py
 ```
 
 Each script prints the key figures it computes and writes its figure to this

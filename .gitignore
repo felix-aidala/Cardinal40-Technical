@@ -12,6 +12,8 @@ env/
 Thumbs.db
 .vscode/
 .idea/
+# Word/Office temporary lock files
+~$*
 
 # Keep the original briefing package out of the public repo
 Cardinal40_Economist_Package.docx

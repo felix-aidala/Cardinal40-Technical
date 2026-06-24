@@ -282,3 +282,53 @@ advantage — and drop the ASPI critical-technology "flip."
 **Note.** Session 5's ASPI work is left in this log as an honest record of the
 detour; the repo again contains exactly three exhibits, with Exhibit 3 back to
 exit-market depth.
+
+---
+
+## Session 7 — Reworking Exhibit 3 to U.S. VC vs. the G7 — 2026-06-24
+
+**Goal.** User was unhappy with the exit-machine Exhibit 3 and asked to brainstorm
+new ideas, possibly a clean break from it.
+
+**What the AI did**
+- Diagnosed the weakness honestly: the client's thesis is a *flow/flywheel*
+  ("finance the swing, reward the win, recycle the capital"), but stock-market
+  capitalization is a *stock* and is partly circular (U.S. market cap is high
+  because it already holds the founder-led firms the essay celebrates). Offered
+  several alternative framings (exit-flow over time, a flywheel schematic, unicorn
+  creation, VC as % of GDP).
+- User raised two decisive points: (a) Exhibit 3 need not be a U.S.–China
+  comparison at all — Exhibits 1 and 2 are both U.S. series, so the head-to-head
+  was the odd one out — and (b) she was not confident vouching for Chinese
+  market-structure data. Agreed this made dropping the China comparison the
+  lower-risk, more coherent move. Settled on **U.S. venture capital as a share of
+  GDP vs. the rest of the developed world**, which serves the "finance the swing"
+  leg directly on data the author knows.
+- Pulled the **OECD Entrepreneurship Financing Database** ("Venture capital
+  investments (market statistics)," dataflow `DSD_VC@DF_VC_INV`, stage = Total)
+  live from the OECD SDMX API; cached the snapshot.
+- **Caught a would-be overclaim before drawing it:** the U.S. is *not* first
+  worldwide on VC/GDP — **Israel** is (~1.8% vs U.S. ~0.5% in 2024). Surfaced this
+  immediately rather than building a "U.S. is #1" chart that a data-savvy reader
+  would puncture.
+- Per the user's instruction, scoped the comparison chart to the **G7** (the
+  largest advanced economies, where the U.S. *is* first and Israel is not a peer),
+  and kept Israel in a one-line footnote — explicitly the difference between a
+  defensible editorial scope and cherry-picking. Also noted the lead reverses on
+  absolute capital (U.S. ~$156B vs Israel ~$10B, ~16×).
+- Built `code/exhibit3_vc_gdp.py` (left: U.S. vs the band of the other G7 over
+  2006–2024; right: 2024 G7 cross-section). Verified figures from the script's own
+  printout (U.S. 3× U.K., 6× France, 8–9× Germany/Japan, 2.7× Canada).
+- At the user's request, framed the annotation around *why show peers, not just
+  China*: capacity to finance founders at scale is what determines who can
+  credibly challenge Beijing, and the U.S. leads even among its closest allies —
+  so the peer comparison shows America is the country equipped to mount the
+  challenge. The China contrast now lives in the prose, not in a chart.
+- Removed the prior exit-machine Exhibit 3 (script, figure, World Bank raw and
+  processed data). Updated the exhibit document, README (table, scoping note,
+  reproduce command), and rebuilt the `.docx`/`.pdf` via pandoc + tectonic.
+
+**Verification.** OECD values were read off the live API pull, not from memory;
+the Israel reversal and all G7 multiples were computed in-script and printed. No
+AI-asserted statistic was carried into the annotation without being reproduced
+from the cached data.
