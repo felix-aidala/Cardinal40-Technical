@@ -8,6 +8,13 @@ scripts in [`code/`](../code); see the repository [README](../README.md).
 
 **Author:** Felix Aidala · **Prepared for:** Cardinal40 (Economist role) · **Date:** June 2026
 
+**Supporting materials.** Full code, data, and step-by-step reproduction
+instructions are in the project's GitHub repository:
+[github.com/felix-aidala/Cardinal40-Technical](https://github.com/felix-aidala/Cardinal40-Technical).
+The complete log of substantive AI-tool interactions — how each tool was used and
+how AI-generated statistics and citations were independently verified — is at
+[`logs/ai_interaction_log.md`](https://github.com/felix-aidala/Cardinal40-Technical/blob/main/logs/ai_interaction_log.md).
+
 The three exhibits trace one logical chain:
 
 1. **Where frontier talent now works** — innovation has moved from the academy into industry and company-building.
@@ -23,7 +30,8 @@ The three exhibits trace one logical chain:
 **Annotation.** This figure anchors the essay's opening claim: that the locus of
 American technological advantage has shifted since the Second World War and the
 Cold War that followed. The scientists who built the first nuclear weapons were
-academics, working for the federal government on leave from their universities;
+largely academics, working for the federal government on leave from their
+universities;
 today the equivalent talent — the country's most capable new PhDs — increasingly
 leaves the academy for industry, where it builds and leads America's frontier
 companies (Anthropic among them). That steady migration of scientific talent into
@@ -64,18 +72,12 @@ and to whether the person who builds a company can be swapped for a professional
 manager once it is built. It is an event study drawn directly from Lee, Kim, and
 Bae (2020): when a founder-CEO exits unexpectedly, citation-weighted patents, a
 standard proxy for innovation, fall. Event studies can be confusing on a first
-read, because what they plot is a difference-in-differences rather than a simple
-time trend; given more time, I would replicate the authors' analysis myself so the
+read, because they plot a difference-in-differences rather than a simple time
+trend. Given more time, I would replicate the authors' analysis myself so the
 figure could show the treated and comparison groups as separate lines. **Nuance
-not to overclaim:** the shaded 95% confidence band widens after the switch, so the
-*later* post-switch points are imprecisely estimated; read the result as the clear
-break at year 0 plus the published magnitude, not as a precise year-by-year path.
-**The rigorously-identified magnitude** comes from the peer-reviewed analysis,
-which isolates causation using CEO *sudden deaths* and reports a **~43.8% drop in
-citation-weighted patents** (controlling for R&D — founders manage and *retain*
-inventors better, they don't simply spend more). I **present the authors'
-figures**; I did not re-run the analysis, whose hand-collected data are not
-redistributable.
+not to overclaim:** this is just one academic paper, so it should be presented as
+a finding rather than a fact. Also, I present the authors' figures; I did not
+re-run the analysis myself.
 
 **Sources.** *Event-study figure:* Lee, Joon Mahn; Kim, Jongsoo; Bae, Joonhyung,
 "Are Founder CEOs Better Innovators? Evidence from S&P 500 Firms" (Wharton Mack
@@ -99,25 +101,20 @@ year-relative-to-switch dummies. All accessed 2026-06-22.
 ![Exhibit 3](exhibit3_vc_gdp.png)
 
 **Annotation.** The first two exhibits establish that frontier talent now sits in
-industry and that founders specifically are hard to replace. This one closes the
-loop on the *system*: America doesn't just produce valuable founders — it
-bankrolls them at a scale no peer economy approaches. Venture capital is the fuel
-that lets a founder take an expensive, uncertain swing, and relative to the size
-of its economy the U.S. invests far more of it than any other G7 country —
-roughly 0.5% of GDP in 2024, about 3× the U.K., 6× France, and 8–9× Germany and
-Japan — a gap that widened markedly after 2018. **Why show peers rather than just
-China:** the contest with China is usually framed as a two-country race, but that
-framing hides the more telling fact — the capacity to finance founders at scale
-is what determines who can credibly *challenge* Beijing, and on that measure the
-U.S. stands alone even among its closest allies. Showing the U.S. against its own
-peer group, not just against China, is what demonstrates that America is the one
-country actually equipped to mount the challenge. **Nuance not to overclaim:** the
-U.S. is not the world leader on this ratio — *Israel* invests a larger share of
-its GDP (~1.8%). I scope the comparison to the G7, the large advanced economies
-where the U.S. leads, and flag Israel rather than bury it; note too that the
-ranking reverses on absolute capital, where the U.S. (~$156B) is ~16× Israel
-(~$10B). And this is venture capital specifically — one channel of startup
-finance, not the whole of it.
+industry and that founders specifically are hard to replace. This figure attempts
+to display America's unique ability to support them. Relative to the size of its
+economy, the U.S. invests far more than any other G7 country — roughly 0.5% of
+GDP in 2024, about 3× the U.K., 6× France, and 8–9× Germany and Japan. **Why show
+peers rather than just China:** the contest with China is usually framed as a
+two-country race, but particularly as the EU aims to lower its reliance on the
+United States, it's worth making the point that the capacity to finance founders
+at scale is what determines who can credibly *challenge* Beijing. On that measure,
+the U.S. stands alone even among its closest allies. This lets us expand the
+argument slightly. Showing the U.S. against its own peer group demonstrates that
+America is the one country actually equipped to mount the challenge. **Nuance not
+to overclaim:** the U.S. is not the world leader on this ratio — *Israel* invests
+a larger share of its GDP (~1.8%). I scope the comparison to the G7, the large
+advanced economies where the U.S. leads.
 
 **Source.** OECD, *Entrepreneurship Financing Database*, "Venture capital
 investments (market statistics)," dataflow `DSD_VC@DF_VC_INV`, business
