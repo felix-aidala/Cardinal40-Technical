@@ -10,7 +10,7 @@ scripts in [`code/`](../code); see the repository [README](../README.md).
 
 The three exhibits trace one logical chain:
 
-1. **Where frontier talent now works** — innovation has moved from the academy into industry and company-building (the "multi-industry moment").
+1. **Where frontier talent now works** — innovation has moved from the academy into industry and company-building.
 2. **Why the founder specifically matters** — founders are not interchangeable managers; remove them and innovation measurably falls.
 3. **Why America's system wins** — the U.S. has a vastly deeper exit machine to finance, reward, and recycle those founders than China does.
 
@@ -20,22 +20,21 @@ The three exhibits trace one logical chain:
 
 ![Exhibit 1](exhibit1_stem_phd_pathways.png)
 
-**Annotation.** Over half a century, the destination of new U.S. PhDs who take a
-definite job (not a postdoc) has been transformed: academia's share fell from
-about two-thirds (67%) in the early 1970s to ~40% in 2024, while industry's rose
-from ~12% to ~40% — the two are now essentially even. The headline for the
-writer: the academic career has gone from *the* default to one of two co-equal
-paths, as the country's most highly trained talent steadily reallocates toward
-industry and company-building. **The nuance that strengthens the thesis:** this
-chart is *all fields*; within **science & engineering specifically**, the shift
-is far sharper — industry rose from 22% (1970–74) to **52%** (2024) while
-academia fell from 58% to **30%**, so in exactly the technical fields the offset
-depends on, industry has *decisively* overtaken the university. **What not to
-overclaim:** this measures *first destinations* of those going straight to work
-(postdocs excluded), not *where the best science happens*; the 2004 academic
-uptick is a real post-dot-com blip, not noise; and the pre-1994 points come from
-earlier SED report vintages (same measure — the series agree where they meet),
-with the academic decline concentrated in the 1970s.
+**Annotation.** This figure anchors the essay's opening claim: that the locus of
+American technological advantage has shifted since the Second World War and the
+Cold War that followed. The scientists who built the first nuclear weapons were
+academics, working for the federal government on leave from their universities;
+today the equivalent talent — the country's most capable new PhDs — increasingly
+leaves the academy for industry, where it builds and leads America's frontier
+companies (Anthropic among them). That steady migration of scientific talent into
+the private sector is what the figure is meant to show, and it is what motivates
+the investment thesis that follows. Two cautions are worth stating plainly. First,
+to recover a picture reaching this far back I had to use all fields rather than
+science and engineering alone, so these are not exclusively technical PhDs.
+Second, the chart shows talent moving *into industry*, not talent *becoming
+founders* — I am careful not to imply the latter, because the great majority of
+these scientists never start a company. The claim is the narrower and more
+defensible one: the frontier of scientific work now sits inside industry.
 
 **Sources.** Three vintages of the same NSF/NCSES measure (sector of new research
 doctorate recipients with a definite U.S. employment commitment; postdocs
@@ -60,22 +59,23 @@ and
 
 ![Exhibit 2](exhibit2_founder_ceo_innovation.png)
 
-**Annotation.** This is the authors' own event study of firms that switched from
-a founder-CEO to a professional CEO. Citation-weighted patent output (log scale)
-runs flat and high through the founder years (~2.1), then drops sharply *at the
-switch* (year 0) and keeps falling for five years. The headline for the writer:
-the decline begins exactly at the handover, not before it — the flat pre-trend is
-what makes "the firm was just on the way down anyway" hard to argue, and is the
-cleanest available answer to the skeptic who says a professional manager can run
-the company just as well once it's built. **Nuance not to overclaim:** the
-shaded 95% confidence band widens after the switch, so the *later* post-switch
-points are imprecisely estimated; read the result as the clear break at year 0
-plus the published magnitude, not as a precise year-by-year path. **The
-rigorously-identified magnitude** comes from the peer-reviewed version, which
-isolates causation using CEO *sudden deaths* and reports a **~43.8% drop in
+**Annotation.** This figure speaks to the distinctive skillset a founder brings —
+and to whether the person who builds a company can be swapped for a professional
+manager once it is built. It is an event study drawn directly from Lee, Kim, and
+Bae (2020): when a founder-CEO exits unexpectedly, citation-weighted patents, a
+standard proxy for innovation, fall. Event studies can be confusing on a first
+read, because what they plot is a difference-in-differences rather than a simple
+time trend; given more time, I would replicate the authors' analysis myself so the
+figure could show the treated and comparison groups as separate lines. **Nuance
+not to overclaim:** the shaded 95% confidence band widens after the switch, so the
+*later* post-switch points are imprecisely estimated; read the result as the clear
+break at year 0 plus the published magnitude, not as a precise year-by-year path.
+**The rigorously-identified magnitude** comes from the peer-reviewed analysis,
+which isolates causation using CEO *sudden deaths* and reports a **~43.8% drop in
 citation-weighted patents** (controlling for R&D — founders manage and *retain*
-inventors better, they don't simply spend more). We **present the authors'
-figures**; we did not re-run the analysis (their data are not redistributable).
+inventors better, they don't simply spend more). I **present the authors'
+figures**; I did not re-run the analysis, whose hand-collected data are not
+redistributable.
 
 **Sources.** *Event-study figure:* Lee, Joon Mahn; Kim, Jongsoo; Bae, Joonhyung,
 "Are Founder CEOs Better Innovators? Evidence from S&P 500 Firms" (Wharton Mack
@@ -94,41 +94,35 @@ year-relative-to-switch dummies. All accessed 2026-06-22.
 
 ---
 
-## Exhibit 3 — The flip: China's rise to the critical-technology research frontier
+## Exhibit 3 — America's exit machine: far deeper capital markets than China's
 
-![Exhibit 3](exhibit3_critical_tech_leadership.png)
+![Exhibit 3](exhibit3_exit_market_depth.png)
 
-**Annotation.** This is the evidence behind the essay's opening claim that "as
-late as 2007 the U.S. led in the overwhelming majority of these categories — today
-the numbers have flipped." Across the 64 critical technologies ASPI tracks, the
-U.S. led 60 (and China 3) in 2003–2007; China then drew level in the mid-2010s
-(leading 28 by 2013–2017) and pulled decisively ahead, leading 57 of 64 in
-2019–2023 while the U.S. fell to 7. The headline for the writer: this is the alarm
-bell — and the time series shows the switch was *gradual and consistent*, not a
-sudden jump, which makes it harder to dismiss as a blip. **The nuance that is also
-the bridge to the rest of the argument:** ASPI measures *research leadership* —
-each country's share of the world's most highly-cited publications — an *upstream,
-leading* indicator, **not** manufacturing, commercialization, or deployed
-capability. So the right read is "China is now generating more of the frontier
-*ideas*," not "China has already won"; the gap between leading in research and
-turning research into world-changing companies is the space the founder thesis
-occupies (Exhibits 1–2). **What not to claim:** don't equate "leads in research"
-with "dominates the market"; the small remainder of the 64 technologies is led by
-other countries (e.g., UK, India); and note that the **U.S. line is drawn from the
-two published endpoints only** (ASPI's report gives China's count at four windows
-but the U.S.'s at just 2003–2007 and 2019–2023), so it shows direction, not a
-precise year-by-year path.
+**Annotation.** Deep, liquid public-equity markets are the backbone of the exit
+ecosystem founders depend on — the place companies IPO and the currency that
+funds acquisitions — and on this measure the U.S. dwarfs China: U.S. stock-market
+capitalization is ~216% of GDP vs. China's ~63% (3.4× deeper relative to the
+economy) and ~$62 trillion vs. ~$12 trillion in absolute size (~5× larger) in
+2024. The headline for the writer: America's structural advantage isn't only that
+it produces founders — it's that it can *finance the swing, reward the win, and
+recycle the capital*, which is exactly the flywheel a thinner exit market starves.
+**The nuance a reader (and a careful critic) might miss:** we deliberately use
+market-cap *depth*, not trading volume — China's share turnover is actually
+*higher* than the U.S. (≈186% vs. 148% of GDP in 2024), but that reflects retail
+speculation, not exit capacity, so it would mislead. Two further caveats: public
+markets are a *proxy* for the whole exit ecosystem (M&A and secondaries also
+matter), and a large share of China's listed value is state-owned with capital
+controls limiting exit and repatriation — so China's *usable* exit depth for a
+private investor is arguably thinner still.
 
-**Source.** ASPI (Australian Strategic Policy Institute), *ASPI's two-decade
-Critical Technology Tracker: The rewards of long-term research investment*,
-released August 2024.
-URL: https://www.aspi.org.au/report/aspis-two-decade-critical-technology-tracker/
-Accessed 2026-06-22. *Variable construction:* a country "leads" a technology if it
-has the highest national share of the world's high-impact research output — the
-top 10% most highly cited publications — in that technology, measured over a
-five-year window; 64 critical technologies are tracked. *Coverage:* global
-research output, comparing 2003–2007 with 2019–2023. Values in
-[`data/raw/aspi_critical_tech_tracker.csv`](../data/raw/aspi_critical_tech_tracker.csv).
+**Source.** World Bank, *World Development Indicators* (underlying data: World
+Federation of Exchanges / Refinitiv). Indicators CM.MKT.LCAP.GD.ZS (market
+capitalization, % of GDP), CM.MKT.LCAP.CD (market capitalization, current US$),
+and CM.MKT.TRAD.GD.ZS (stocks traded, % of GDP — context only). Pulled via the
+World Bank API, accessed 2026-06-22; snapshot cached in
+[`data/raw/worldbank_market_depth.csv`](../data/raw/worldbank_market_depth.csv).
+*Coverage:* United States and China, 2003–2024 (absolute market cap available
+through 2025). API docs: https://datahelpdesk.worldbank.org/.
 
 ---
 
@@ -138,7 +132,7 @@ research output, comparing 2003–2007 with 2019–2023. Values in
 pip install -r requirements.txt
 python code/exhibit1_stem_phd_pathways.py
 python code/exhibit2_founder_ceo_innovation.py
-python code/exhibit3_critical_tech_leadership.py
+python code/exhibit3_exit_market_depth.py
 ```
 
 Each script prints the key figures it computes and writes its figure to this

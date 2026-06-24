@@ -254,3 +254,31 @@ real points as a solid line and the U.S.'s two endpoints as a **dashed** connect
 explicitly labeled "endpoints only." Used only the 2024 two-decade report (a
 single consistent 64-technology framework) — deliberately not the 2023 report,
 which tracked 44 technologies and would not be comparable.
+
+---
+
+## Session 6 — Reverting Exhibit 3 to the exit-machine version — 2026-06-22
+
+**Goal.** User decided to go back to the original Exhibit 3 — the U.S.-vs-China
+capital-market-depth ("exit machine") figure showing America's enduring funding
+advantage — and drop the ASPI critical-technology "flip."
+
+**What the AI did**
+- Briefly considered a third option the user floated (an H-1B-applicants time
+  series for "human-capital advantage endures"); flagged two honest points before
+  building anything: H-1B is a *non-immigrant work visa*, not green-card
+  immigration, and approvals are flat by the 85k statutory cap so the signal
+  lives in *demand* (registrations), which is also distorted by FY2024 lottery
+  gaming. User then opted to restore the prior exit-market exhibit instead, so the
+  H-1B chart was not built.
+- Recovered the original Exhibit 3 from git history (commit 71049f5): the
+  `exhibit3_exit_market_depth.py` script, its processed data, and the cached
+  World Bank raw snapshot. Removed the ASPI files (script, figure, raw CSV).
+- Re-ran the script; figure reproduces the documented numbers exactly (U.S.
+  market cap 216% of GDP vs. China 63%, 3.4× deeper; $62T vs. $12T, ~5× larger,
+  2024). Restored the Exhibit 3 annotation/source in the exhibit document and the
+  Exhibit 3 row, scoping note, and reproduce command in the README.
+
+**Note.** Session 5's ASPI work is left in this log as an honest record of the
+detour; the repo again contains exactly three exhibits, with Exhibit 3 back to
+exit-market depth.
